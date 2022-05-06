@@ -14515,7 +14515,7 @@ a.anchor-link {
 <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-python3"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
@@ -14553,59 +14553,6 @@ a.anchor-link {
     <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>Starting Spark application
-</pre>
-</div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
-<table>
-<tr><th>ID</th><th>YARN Application ID</th><th>Kind</th><th>State</th><th>Spark UI</th><th>Driver log</th><th>User</th><th>Current session?</th></tr><tr><td>0</td><td>application_1651860913834_0001</td><td>pyspark</td><td>idle</td><td><a target="_blank" href="http://ip-172-31-26-236.ec2.internal:20888/proxy/application_1651860913834_0001/" class="emr-proxy-link" emr-resource="j-3MXOKY934WDA4
-" application-id="application_1651860913834_0001">Link</a></td><td><a target="_blank" href="http://ip-172-31-26-236.ec2.internal:8042/node/containerlogs/container_1651860913834_0001_01_000001/livy" >Link</a></td><td>None</td><td>✔</td></tr></table>
-</div>
-
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
-<pre>FloatProgress(value=0.0, bar_style=&#39;info&#39;, description=&#39;Progress:&#39;, layout=Layout(height=&#39;25px&#39;, width=&#39;50%&#39;),…</pre>
-</div>
-
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>SparkSession available as &#39;spark&#39;.
-</pre>
-</div>
-</div>
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
 
 
 <div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
@@ -14621,7 +14568,7 @@ a.anchor-link {
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-python3"><pre><span></span><span class="n">spark</span> <span class="o">=</span> <span class="n">SparkSession</span>\
@@ -14675,41 +14622,234 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>We are creating a schema so that we can manipulate the Spark data frame.</p>
+<p>We are reading data from the csv file and putting it into a Spark dataframe and letting it infer its own schema.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python3"><pre><span></span>
+<div class=" highlight hl-python3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s1">&#39;s3://cs496-proga1-storage/covid_data/metadata.csv&#39;</span><span class="p">,</span>
+                    <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span>
+                    <span class="n">inferSchema</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                    <span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre>VBox()</pre>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre>FloatProgress(value=0.0, bar_style=&#39;info&#39;, description=&#39;Progress:&#39;, layout=Layout(height=&#39;25px&#39;, width=&#39;50%&#39;),…</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-python3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">printSchema</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre>VBox()</pre>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre>FloatProgress(value=0.0, bar_style=&#39;info&#39;, description=&#39;Progress:&#39;, layout=Layout(height=&#39;25px&#39;, width=&#39;50%&#39;),…</pre>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>root
+ |-- cord_uid: string (nullable = true)
+ |-- sha: string (nullable = true)
+ |-- source_x: string (nullable = true)
+ |-- title: string (nullable = true)
+ |-- doi: string (nullable = true)
+ |-- pmcid: string (nullable = true)
+ |-- pubmed_id: string (nullable = true)
+ |-- license: string (nullable = true)
+ |-- abstract: string (nullable = true)
+ |-- publish_time: string (nullable = true)
+ |-- authors: string (nullable = true)
+ |-- journal: string (nullable = true)
+ |-- mag_id: string (nullable = true)
+ |-- who_covidence_id: string (nullable = true)
+ |-- arxiv_id: string (nullable = true)
+ |-- pdf_json_files: string (nullable = true)
+ |-- pmc_json_files: string (nullable = true)
+ |-- url: string (nullable = true)
+ |-- s2_id: string (nullable = true)</pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>-We know this code works, but it creates its own schema and is not easily manipulated.</p>
+<p>Saves only the title and the abstract into a dataframe.</p>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="s1">&#39;s3://cs496-proga1-storage/covid_data/metadata.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">inferSchema</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<div class=" highlight hl-python3"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">abstract</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
      </div>
 </div>
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre>VBox()</pre>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre>FloatProgress(value=0.0, bar_style=&#39;info&#39;, description=&#39;Progress:&#39;, layout=Layout(height=&#39;25px&#39;, width=&#39;50%&#39;),…</pre>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>+--------------------+--------------------+
+|               title|            abstract|
++--------------------+--------------------+
+|Clinical features...|OBJECTIVE: This r...|
+|Nitric oxide: a p...|Inflammatory dise...|
+|Surfactant protei...|Surfactant protei...|
+|Role of endotheli...|Endothelin-1 (ET-...|
+|Gene expression i...|Respiratory syncy...|
+|Sequence requirem...|Nidovirus subgeno...|
+|Debate: Transfusi...|Recent evidence s...|
+|The 21st Internat...|The 21st Internat...|
+|Heme oxygenase-1 ...|Heme oxygenase-1 ...|
+|Technical Descrip...|This report descr...|
+|Conservation of p...|Regulation of orn...|
+|Heterogeneous nuc...|Heterogeneous nuc...|
+|A Method to Ident...|The UBA domain is...|
+|Vaccinia virus in...|We examined the r...|
+|The site of origi...|                null|
+|Multi-faceted, mu...|There are hundred...|
+|Herpes simplex vi...|INTRODUCTION: The...|
+|Logistics of comm...|BACKGROUND: Previ...|
+|Protection of pul...|BACKGROUND: Oxyge...|
+|Bioinformatic map...|BACKGROUND: AlkB-...|
++--------------------+--------------------+
+only showing top 20 rows</pre>
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
