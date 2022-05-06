@@ -14622,7 +14622,7 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>We are reading data from the csv file and putting it into a Spark dataframe and letting it infer its own schema.</p>
+<p>We are reading data from the csv file and putting it into a Spark dataframe and letting it infer the schema from the header.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
@@ -14763,16 +14763,67 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Saves only the title and the abstract into a dataframe.</p>
+<p>We only want to keep the tile and abstract columns. We drop the rest from the dataframe.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python3"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">abstract</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<div class=" highlight hl-python3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;cord_uid&#39;</span><span class="p">,</span> <span class="s1">&#39;sha&#39;</span><span class="p">,</span> <span class="s1">&#39;source_x&#39;</span><span class="p">,</span> <span class="s1">&#39;doi&#39;</span><span class="p">,</span> <span class="s1">&#39;pmcid&#39;</span><span class="p">,</span> <span class="s1">&#39;pubmed_id&#39;</span><span class="p">,</span> <span class="s1">&#39;license&#39;</span><span class="p">,</span> <span class="s1">&#39;publish_time&#39;</span><span class="p">,</span> <span class="s1">&#39;authors&#39;</span><span class="p">,</span> <span class="s1">&#39;journal&#39;</span><span class="p">,</span> <span class="s1">&#39;mag_id&#39;</span><span class="p">,</span> <span class="s1">&#39;who_covidence_id&#39;</span><span class="p">,</span> <span class="s1">&#39;arxiv_id&#39;</span><span class="p">,</span> <span class="s1">&#39;pdf_json_files&#39;</span><span class="p">,</span> <span class="s1">&#39;pmc_json_files&#39;</span><span class="p">,</span> <span class="s1">&#39;url&#39;</span><span class="p">,</span> <span class="s1">&#39;s2_id&#39;</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre>VBox()</pre>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre>FloatProgress(value=0.0, bar_style=&#39;info&#39;, description=&#39;Progress:&#39;, layout=Layout(height=&#39;25px&#39;, width=&#39;50%&#39;),…</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>Display the dataframe.<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-python3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -14852,13 +14903,19 @@ only showing top 20 rows</pre>
 
 </div>
 
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>We drop the null values from the dataframe.</p>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-python3"><pre><span></span>
+<div class=" highlight hl-python3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">na</span><span class="o">.</span><span class="n">drop</span><span class="p">()</span>
 </pre></div>
 
      </div>
@@ -14866,6 +14923,135 @@ only showing top 20 rows</pre>
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre>VBox()</pre>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre>FloatProgress(value=0.0, bar_style=&#39;info&#39;, description=&#39;Progress:&#39;, layout=Layout(height=&#39;25px&#39;, width=&#39;50%&#39;),…</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-python3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre>VBox()</pre>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre>FloatProgress(value=0.0, bar_style=&#39;info&#39;, description=&#39;Progress:&#39;, layout=Layout(height=&#39;25px&#39;, width=&#39;50%&#39;),…</pre>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>+--------------------+--------------------+
+|               title|            abstract|
++--------------------+--------------------+
+|Clinical features...|OBJECTIVE: This r...|
+|Nitric oxide: a p...|Inflammatory dise...|
+|Surfactant protei...|Surfactant protei...|
+|Role of endotheli...|Endothelin-1 (ET-...|
+|Gene expression i...|Respiratory syncy...|
+|Sequence requirem...|Nidovirus subgeno...|
+|Debate: Transfusi...|Recent evidence s...|
+|The 21st Internat...|The 21st Internat...|
+|Heme oxygenase-1 ...|Heme oxygenase-1 ...|
+|Technical Descrip...|This report descr...|
+|Conservation of p...|Regulation of orn...|
+|Heterogeneous nuc...|Heterogeneous nuc...|
+|A Method to Ident...|The UBA domain is...|
+|Vaccinia virus in...|We examined the r...|
+|Multi-faceted, mu...|There are hundred...|
+|Herpes simplex vi...|INTRODUCTION: The...|
+|Logistics of comm...|BACKGROUND: Previ...|
+|Protection of pul...|BACKGROUND: Oxyge...|
+|Bioinformatic map...|BACKGROUND: AlkB-...|
+|Managing emerging...|In the 1980&#39;s and...|
++--------------------+--------------------+
+only showing top 20 rows</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Use vector assembler to turn columns into an array. Source: <a href="https://rsandstroem.github.io/sparkkmeans.html">https://rsandstroem.github.io/sparkkmeans.html</a></p>
+
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
